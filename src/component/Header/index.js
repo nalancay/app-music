@@ -8,9 +8,7 @@ const Header = () => {
   return (
     <ConatinerStyled>
       <SearchBar />
-      <ButtonStyled
-        style={{ display: "flex", gap: "12px", alignItems: "center" }}
-      >
+      <ButtonStyled>
         <FontAwesomeIcon className="FASearchIcon" icon={faUser} />
         <span>Natalia A.</span>
       </ButtonStyled>

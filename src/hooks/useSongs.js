@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getSongs from "api/songs";
+import SongsContext from "context/songsContext";
 
-export function useSongs({ keyword } = { keyword: "adele" }) {
-  const [songs, setSongs] = useState([]);
+export function useSongs({ keyword } = { keyword: "tini" }) {
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState({ hasError: false });
+  const { songs, setSongs } = useContext(SongsContext);
 
   const handleError = (err) =>
     setErrorState({ hasError: true, message: err.message });

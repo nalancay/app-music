@@ -2,18 +2,33 @@ import styled from "styled-components";
 
 export const AppMain = styled.div`
   display: flex;
-  flex-direction: initial;
-  align-items: flex-start;
+  min-height: 100vh;
 `;
 
 export const ContainerCategory = styled.div`
-  width: 330px;
-  height: 1087px;
+  width: 24%;
   background: ${({ theme }) => theme.colors.DarkRedSecondary};
 
+  @media (max-width: 750px) {
+    width: 35%;
+  }
+`;
+
+export const AppSections = styled.div`
+  width: 76%;
+  @media (max-width: 750px) {
+    width: 65%;
+  }
+`;
+
+export const ContainerImg = styled.div`
+  margin-top: 50px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
   img {
-    width: 250px;
+    width: 100%;
     height: 59px;
-    margin: 50px 40px 0px 40px;
+    object-fit: contain;
   }
 `;

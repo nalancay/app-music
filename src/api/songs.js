@@ -3,7 +3,7 @@ const fromApiResponseToSongs = (apiResponse) => {
   return data;
 };
 
-export default async function getSongs({ keyword = "adele" }) {
+export default async function getSongs({ keyword = "tini" }) {
   const apiURL = `https://api.deezer.com/search?q=${keyword}`;
 
   try {

@@ -13,6 +13,12 @@ export const CategoryStyled = styled.div`
     margin: 0px 0px 4px 0px;
     color: ${({ theme }) => theme.colors.white};
   }
+
+  @media (max-width: 500px) {
+    h4 {
+      padding-left: 10px;
+    }
+  }
 `;
 
 export const CategoryList = styled.ul`
@@ -28,6 +34,9 @@ export const CategoryListItem = styled.li`
   padding-left: ${({ checked }) => (checked ? "35px" : "40px")};
   border-left: ${({ theme, checked }) =>
     checked ? `5px solid ${theme.colors.RedPrincipal}` : ""};
+  @media (max-width: 500px) {
+    padding-left: ${({ checked }) => (checked ? "15px" : "20px")};
+  }
 `;
 
 export const CategoryLink = styled(Link)`

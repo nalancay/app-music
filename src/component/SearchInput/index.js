@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass as SearchIcon } from "@fortawesome/free-solid-svg-icons";
-import { FormStyled, InputStyled, ButtonStyled } from "./SearchInput.styles";
+import {
+  FormStyled,
+  InputStyled,
+  ButtonStyled,
+  ConatinerSearchStyled,
+} from "./SearchInput.styles";
 import useForm from "hooks/useForm";
 
 export default function SearchBar({ initialKeyword = "" }) {
@@ -27,17 +32,23 @@ export default function SearchBar({ initialKeyword = "" }) {
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
-      <InputStyled
-        type="text"
-        id="search"
-        placeholder="Buscar"
-        onChange={handleChange}
-        value={keyword}
-      />
-      <ButtonStyled>
-        <FontAwesomeIcon className="FASearchIcon" icon={SearchIcon} />
-      </ButtonStyled>
-    </FormStyled>
+    <ConatinerSearchStyled>
+      <FormStyled onSubmit={handleSubmit}>
+        <InputStyled
+          type="text"
+          id="search"
+          placeholder="Buscar"
+          onChange={handleChange}
+          value={keyword}
+        />
+        <ButtonStyled>
+          <FontAwesomeIcon
+            className="FASearchIcon"
+            icon={SearchIcon}
+            style={{ color: "#BDBDBD" }}
+          />
+        </ButtonStyled>
+      </FormStyled>
+    </ConatinerSearchStyled>
   );
 }

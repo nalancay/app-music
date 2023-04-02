@@ -7,7 +7,7 @@ import {
 } from "./Category.styles";
 
 const Category = ({ name, options = [] }) => {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState();
 
   return (
     <CategoryStyled>
@@ -19,10 +19,7 @@ const Category = ({ name, options = [] }) => {
             onClick={() => setSelectedItem(singleOption)}
             checked={singleOption === selectedItem}
           >
-            <CategoryLink
-              checked={singleOption === selectedItem}
-              to={`search/${singleOption}`}
-            >
+            <CategoryLink checked={singleOption === selectedItem}>
               {singleOption}
             </CategoryLink>
           </CategoryListItem>

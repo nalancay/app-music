@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const ItemContainer = styled.div`
-  border: 1px solid red;
   height: 211px;
   width: 160px;
+  font-family: "Quicksand";
+  font-style: normal;
 
   img {
     width: 100%;
@@ -14,8 +15,6 @@ export const ItemContainer = styled.div`
 
   div {
     p {
-      font-family: "Quicksand";
-      font-style: normal;
       font-weight: 700;
       font-size: 14px;
       line-height: 18px;
@@ -25,12 +24,28 @@ export const ItemContainer = styled.div`
     }
 
     span {
-      font-family: "Quicksand";
-      font-style: normal;
       font-weight: 400;
       font-size: 12px;
       line-height: 15px;
       color: ${({ theme }) => theme.colors.Gray};
+    }
+  }
+
+  div {
+    position: relative;
+    .IconFaPlay {
+      position: absolute;
+      right: 64px;
+      top: 62px;
+      color: #ffffff;
+      font-size: 36px;
+    }
+
+    .IconFaEllipsis {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #ffffff;
     }
   }
 `;

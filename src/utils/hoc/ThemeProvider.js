@@ -7,6 +7,7 @@ export const getTheme = () => {
       white: "#FFFFFF",
       Gray: "#828282",
       Gray1: "#555555",
+      Gray2: "#BDBDBD",
     },
   };
 };

@@ -1,6 +1,19 @@
 import ListOfItems from "component/ListOfItems";
 import { useSongs } from "hooks/useSongs";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+const StylesH3 = styled.h3`
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  color: #e86060;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+`;
 
 const SearchResult = () => {
   let { keyword } = useParams();
@@ -8,13 +21,12 @@ const SearchResult = () => {
 
   return (
     <>
-      {loading ? (
+      {errorState.hasError && <span>{errorState.message}</span>}
+      {loading && !errorState.hasError ? (
         <span>Cargando...</span>
       ) : (
         <div>
-          <h3 className="App-title">
-            Resultado de tu busqueda: {decodeURI(keyword) || "Recientes"}
-          </h3>
+          <StylesH3 className="App-title">Resultados</StylesH3>
           <ListOfItems items={songs} />
         </div>
       )}
