@@ -15,7 +15,8 @@ import { useContext } from "react";
 import SongContext from "context/songContext";
 
 function App() {
-  const { song } = useContext(SongContext);
+  const { song, isPlaying, setIsPlaying, musica, setMusica } =
+    useContext(SongContext);
 
   return (
     <>
@@ -29,14 +30,24 @@ function App() {
         </ContainerCategory>
         <AppSections>
           <Header />
-          <ItemDetail song={song} />
+          <ItemDetail
+            song={song}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+          />
           <Routes>
             <Route path="/" element={<SearchResult />} />
             <Route path="/search/:keyword" element={<SearchResult />} />
           </Routes>
         </AppSections>
       </AppMain>
-      <Footer song={song} />
+      <Footer
+        song={song}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        musica={musica}
+        setMusica={setMusica}
+      />
     </>
   );
 }

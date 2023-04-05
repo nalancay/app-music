@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -11,15 +10,14 @@ import {
   ConstainerArtist,
 } from "./ItemDetail.styles";
 import { Link } from "react-router-dom";
-import { usePlay } from "hooks/usePlay";
 
-const SingleItemDetail = ({ song }) => {
-  const audioURL = song.preview;
-  const { togglePlay, isPlaying } = usePlay({ audioURL });
-
+const SingleItemDetail = ({ song, isPlaying, setIsPlaying }) => {
+  const handleClick = () => {
+    setIsPlaying(!isPlaying);
+  };
   return (
     <ConstainerArtist>
-      <Link onClick={togglePlay}>
+      <Link onClick={handleClick}>
         <img
           src={song.artist?.picture_medium}
           alt={""}
@@ -34,10 +32,16 @@ const SingleItemDetail = ({ song }) => {
   );
 };
 
-const ItemDetail = ({ song }) => {
+const ItemDetail = ({ song, isPlaying, setIsPlaying }) => {
   return (
     <ContainerItemDetail>
-      {song && <SingleItemDetail song={song} />}
+      {song && (
+        <SingleItemDetail
+          song={song}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
+      )}
       <ContainerDetail imgen={song?.artist?.picture_big}>
         <ContainerInfo>
           <h4>{song?.artist?.name}</h4>

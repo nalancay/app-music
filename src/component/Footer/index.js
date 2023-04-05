@@ -7,19 +7,39 @@ import {
   faBackwardStep,
   faVolumeOff,
 } from "@fortawesome/free-solid-svg-icons";
-import { usePlay } from "hooks/usePlay";
+import { useEffect, useState } from "react";
+import useSound from "use-sound";
 
-const Footer = ({ song }) => {
+const Footer = ({ song, isPlaying, setIsPlaying, musica, setMusica }) => {
   const imgArtist = song?.artist?.picture;
-  const audioURL =
-    song?.preview ||
-    "https://cdns-preview-8.dzcdn.net/stream/c-87eb6231a6d465c3923592b208232f31-3.mp3";
-  const { togglePlay, isPlaying, setVolume } = usePlay({ audioURL });
+  const [volume, setVolume] = useState(1);
 
   const handleClickVolumen = (ev) => {
     const valueVolumen = ev.target.value;
     setVolume(valueVolumen);
   };
+
+  const handleClick = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const [play, { stop }] = useSound(musica, {
+    volume,
+  });
+
+  useEffect(() => {
+    const handleToggler = () => {
+      setMusica(musica);
+    };
+    document.addEventListener("click", handleToggler);
+
+    if (isPlaying) {
+      play();
+    } else {
+      stop();
+    }
+    return () => document.removeEventListener("click", handleToggler);
+  }, [setMusica, musica, isPlaying]);
 
   return (
     <ContainerFooter>
@@ -40,7 +60,7 @@ const Footer = ({ song }) => {
             <FontAwesomeIcon className="IconSearch" icon={faBackwardStep} />
           </span>
         </button>
-        <button className="BtnIcon" onClick={togglePlay}>
+        <button className="BtnIcon" onClick={handleClick}>
           <span>
             <FontAwesomeIcon
               icon={isPlaying ? faStop : faCirclePlay}

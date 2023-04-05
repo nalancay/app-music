@@ -1,21 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ItemContainer } from "./Item.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { usePlay } from "hooks/usePlay";
 import SongContext from "context/songContext";
 
-export default function Item({ singleItem }) {
-  const { setSong } = useContext(SongContext);
-  const { artist, title_short: title, preview } = singleItem;
+export default function Item({ singleItem, isSelectSong, setIsSelectSong }) {
+  const { setSong, isPlaying, setIsPlaying, setMusica } =
+    useContext(SongContext);
+  const { id, artist, title_short: title, preview } = singleItem;
   const { picture_medium: url, name } = artist;
-  const { togglePlay, isPlaying } = usePlay({ audioURL: preview });
+  const [toggle, setToggle] = useState(false);
 
   const handleClick = () => {
-    togglePlay();
+    setIsPlaying(false);
+    setIsSelectSong(id);
     setSong(singleItem);
+    setToggle(!toggle);
+    setMusica(preview);
   };
+
+  useEffect(() => {
+    setIsPlaying(isSelectSong === id && toggle);
+  }, [toggle]);
 
   return (
     <ItemContainer>
@@ -24,7 +31,7 @@ export default function Item({ singleItem }) {
         <Link onClick={handleClick}>
           <FontAwesomeIcon
             className="IconFaPlay"
-            icon={isPlaying ? faStop : faPlay}
+            icon={isSelectSong === id && isPlaying ? faStop : faPlay}
           />
         </Link>
         <FontAwesomeIcon className="IconFaEllipsis" icon={faEllipsisV} />
