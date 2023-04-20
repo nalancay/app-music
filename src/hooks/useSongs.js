@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import getSongs from "api/songs";
 import SongsContext from "context/songsContext";
 
-export function useSongs({ keyword = "tini" }) {
+export function useSongs({ keyword = "danza" }) {
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState({ hasError: false });
   const { songs, setSongs } = useContext(SongsContext);
@@ -11,7 +11,7 @@ export function useSongs({ keyword = "tini" }) {
     setErrorState({ hasError: true, message: err.message });
 
   const keywordToUse =
-    localStorage.getItem("lastKeyword") !== undefined
+    localStorage.getItem("lastKeyword") !== "undefined"
       ? localStorage.getItem("lastKeyword")
       : keyword;
 

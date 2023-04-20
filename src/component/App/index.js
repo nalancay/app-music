@@ -1,7 +1,6 @@
 import Category from "component/Category";
 import Footer from "component/Footer";
 import Header from "component/Header";
-import SearchResult from "component/SearchResult";
 import { CategoryLibrary, CategoryPlaylist } from "./App.constants";
 import {
   AppMain,
@@ -13,6 +12,8 @@ import { Routes, Route } from "react-router-dom";
 import ItemDetail from "component/ItemDetail";
 import { useContext } from "react";
 import SongContext from "context/songContext";
+import Home from "page/Home";
+import LazySearchResult from "component/SearchResult";
 
 function App() {
   const { song, isPlaying, setIsPlaying, musica, setMusica } =
@@ -36,8 +37,8 @@ function App() {
             setIsPlaying={setIsPlaying}
           />
           <Routes>
-            <Route path="/" element={<SearchResult />} />
-            <Route path="/search/:keyword" element={<SearchResult />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/search/:keyword" element={<LazySearchResult />} />
           </Routes>
         </AppSections>
       </AppMain>

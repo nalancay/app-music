@@ -1,9 +1,10 @@
-export const CategoryLibrary = [
-  "Recientes",
-  "Artistas",
-  "Álbums",
-  "Canciones",
-  "Estaciones",
-];
+export const CategoryLibrary = ["Recientes", "Artistas", "Álbums", "Canciones"];
 
-export const CategoryPlaylist = ["Metal", "Para bailar", "Rock 90s", "Baladas"];
+export const CategoryPlaylist = [
+  "Metal",
+  "Para bailar",
+  "Rock 90s",
+  "Baladas",
+  "Jazz",
+  "Pop",
+];

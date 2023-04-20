@@ -11,10 +11,7 @@ import {
 } from "./ItemDetail.styles";
 import { Link } from "react-router-dom";
 
-const SingleItemDetail = ({ song, isPlaying, setIsPlaying }) => {
-  const handleClick = () => {
-    setIsPlaying(!isPlaying);
-  };
+const SingleItemDetail = ({ song, isPlaying, handleClick }) => {
   return (
     <ConstainerArtist>
       <Link onClick={handleClick}>
@@ -33,43 +30,53 @@ const SingleItemDetail = ({ song, isPlaying, setIsPlaying }) => {
 };
 
 const ItemDetail = ({ song, isPlaying, setIsPlaying }) => {
+  const handleClick = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
-    <ContainerItemDetail>
+    <>
       {song && (
-        <SingleItemDetail
-          song={song}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-        />
+        <ContainerItemDetail>
+          {song && (
+            <SingleItemDetail
+              song={song}
+              isPlaying={isPlaying}
+              handleClick={handleClick}
+            />
+          )}
+          <ContainerDetail imgen={song?.artist?.picture_big}>
+            <ContainerInfo>
+              <h4>{song?.artist?.name}</h4>
+              <div className="textDetail">
+                <span>Lo mejor de {song?.artist?.name}</span>
+                <p>321,123 seguidores</p>
+              </div>
+              <div>
+                {song?.artist?.name} (Tottenham, Londres, Inglaterra, 5 de mayo
+                de 1988), conocida simplemente como {song?.artist?.name}, es una
+                cantante, compositora y multinstrumentista británica.8​
+              </div>
+            </ContainerInfo>
+            <ButtonList className="buttonSection">
+              <ButtonListItem style={{ background: "#E86060" }}>
+                <ButtonLink onClick={handleClick}>
+                  {isPlaying ? "Pausa" : "Reproducir"}
+                </ButtonLink>
+              </ButtonListItem>
+              <ButtonListItem style={{ border: "1px solid #eb5757" }}>
+                <ButtonLink>Seguir</ButtonLink>
+              </ButtonListItem>
+              <ButtonListItem style={{ marginLeft: "-35px" }}>
+                <ButtonLink>
+                  <FontAwesomeIcon icon={faEllipsis} />
+                </ButtonLink>
+              </ButtonListItem>
+            </ButtonList>
+          </ContainerDetail>
+        </ContainerItemDetail>
       )}
-      <ContainerDetail imgen={song?.artist?.picture_big}>
-        <ContainerInfo>
-          <h4>{song?.artist?.name}</h4>
-          <div className="textDetail">
-            <span>Lo mejor de {song?.artist?.name}</span>
-            <p>321,123 seguidores</p>
-          </div>
-          <div>
-            {song?.artist?.name} (Tottenham, Londres, Inglaterra, 5 de mayo de
-            1988), conocida simplemente como {song?.artist?.name}, es una
-            cantante, compositora y multinstrumentista británica.8​
-          </div>
-        </ContainerInfo>
-        <ButtonList className="buttonSection">
-          <ButtonListItem style={{ background: "#E86060" }}>
-            <ButtonLink>Reproducir</ButtonLink>
-          </ButtonListItem>
-          <ButtonListItem style={{ border: "1px solid #eb5757" }}>
-            <ButtonLink>Seguir</ButtonLink>
-          </ButtonListItem>
-          <ButtonListItem style={{ marginLeft: "-35px" }}>
-            <ButtonLink>
-              <FontAwesomeIcon icon={faEllipsis} />
-            </ButtonLink>
-          </ButtonListItem>
-        </ButtonList>
-      </ContainerDetail>
-    </ContainerItemDetail>
+    </>
   );
 };
 
